@@ -4,11 +4,14 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install --only=production && npm cache clean --force
+RUN npm install --production --verbose && \
+    npm cache clean --force && \
+    ls -la node_modules/ | head -20
 
 COPY . .
 
-RUN chown -R node:node /app
+RUN chown -R node:node /app && \
+    ls -la /app/ | head -20
 
 EXPOSE 3002
 
