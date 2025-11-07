@@ -4,7 +4,8 @@
 
 | Service | Container Port | Host Port | Status |
 |---------|---------------|-----------|--------|
-| Khmer Calendar API | 3000 | 3002 | ✅ Available |
+| Khmer Calendar API (Production) | 3002 | 3002 | ✅ Available |
+| Khmer Calendar API (Development) | 3003 | 3003 | ✅ Available |
 | app-endpoint | 3000 | 3001 | ✅ Running |
 | API Gateway | 9090 | 9090 | ✅ Running |
 | Enterprise Service | 9092 | 9092 | ✅ Running |
@@ -16,7 +17,8 @@
 
 ## Access URLs
 
-- **Khmer Calendar API**: http://localhost:3002
+- **Khmer Calendar API (Production)**: http://localhost:3002
+- **Khmer Calendar API (Development)**: http://localhost:3003
 - **app-endpoint**: http://localhost:3001
 - **API Gateway**: http://localhost:9090
 - **Enterprise Service**: http://localhost:9092
@@ -47,7 +49,7 @@ docker ps | grep PORT_NUMBER
 
 ### Recommended Port Ranges
 
-- **3000-3009**: Node.js applications
+- **3001-3009**: Node.js applications (3000 reserved/avoided)
 - **9090-9099**: API Gateways and Services
 - **5432-5439**: PostgreSQL databases
 - **6379-6389**: Redis instances
@@ -59,10 +61,10 @@ docker ps | grep PORT_NUMBER
 If you need to run multiple Node.js projects:
 
 1. **Use different host ports** (as currently configured):
-   - Project 1: 3001
-   - Project 2: 3002
-   - Project 3: 3003
-   - etc.
+   - app-endpoint: 3001
+   - Khmer Calendar API (Production): 3002
+   - Khmer Calendar API (Development): 3003
+   - Future projects: 3004, 3005, etc.
 
 2. **Use environment variables** in docker-compose.yml:
    ```yaml
